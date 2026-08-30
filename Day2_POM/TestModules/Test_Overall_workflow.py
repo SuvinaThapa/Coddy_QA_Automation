@@ -31,6 +31,8 @@ product_page.go_to_accounting_tab(driver)
 product_page.fill_sales_tab(driver)
 product_page.click_create_product(driver)
 product_page.verify_product_created(driver)
+product_page.edit_product(driver)
+product_page.verify_product_edited(driver)
 
 # Step 4: Add Customer (details filled inside create_customer)
 customer_page.go_to_customer_module(driver)
@@ -38,17 +40,18 @@ customer_page.click_new_customer(driver)
 customer_page.create_customer(driver)
 customer_page.verify_customer_created(driver)
 
-# Step 5: Create Delivery Note as Draft
-delivery_note_modal.go_to_delivery_note_module(driver)
-delivery_note_modal.click_new_delivery_note(driver)
-delivery_note_modal.create_delivery_note_draft(driver, customer="Suvina", item="Sandwich", quantity=6)
-delivery_note_modal.verify_saved_as_draft(driver)
-
-# Step 6: Create Task with Reminder
+# Step 5: Create Task with Reminder
 Task_and_remainder_modal.go_to_task_module(driver)
 Task_and_remainder_modal.click_new_task(driver)
 Task_and_remainder_modal.create_task(driver)
 Task_and_remainder_modal.verify_task_created(driver)
+
+# Step 6: Create Delivery Note as Draft
+delivery_note_modal.go_to_delivery_note_module(driver)
+delivery_note_modal.click_new_delivery_note(driver)
+delivery_note_modal.create_delivery_note_draft(driver)
+delivery_note_modal.verify_saved_as_draft(driver)
+
 
 time.sleep(2)
 
