@@ -32,10 +32,10 @@ product_page.fill_sales_tab(driver)
 product_page.click_create_product(driver)
 product_page.verify_product_created(driver)
 
-# Step 4: Add Customer (mandatory Contact Name + optional email)
+# Step 4: Add Customer (details filled inside create_customer)
 customer_page.go_to_customer_module(driver)
 customer_page.click_new_customer(driver)
-customer_page.create_customer(driver, "Suvina", "anivus12@gmail.com")
+customer_page.create_customer(driver)
 customer_page.verify_customer_created(driver)
 
 # Step 5: Create Delivery Note as Draft
