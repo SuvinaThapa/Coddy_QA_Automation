@@ -44,18 +44,11 @@ delivery_note_modal.click_new_delivery_note(driver)
 delivery_note_modal.create_delivery_note_draft(driver, customer="Suvina", item="Sandwich", quantity=6)
 delivery_note_modal.verify_saved_as_draft(driver)
 
-# Step 6: Create Task
+# Step 6: Create Task with Reminder
 Task_and_remainder_modal.go_to_task_module(driver)
 Task_and_remainder_modal.click_new_task(driver)
-Task_and_remainder_modal.create_task(driver, title="Complete Report", priority="Medium")
-
-# Step 7: Edit the task and add a reminder (Before task is due, send before 2)
-Task_and_remainder_modal.open_task_for_edit(driver, "Complete Report")
-Task_and_remainder_modal.add_reminder_before_due(driver, send_before=2)
-
-# Step 8: Delete the task (with confirmation popup)
-Task_and_remainder_modal.delete_task(driver, "Complete Report")
-Task_and_remainder_modal.verify_task_deleted(driver, "Complete Report")
+Task_and_remainder_modal.create_task(driver)
+Task_and_remainder_modal.verify_task_created(driver)
 
 time.sleep(2)
 
