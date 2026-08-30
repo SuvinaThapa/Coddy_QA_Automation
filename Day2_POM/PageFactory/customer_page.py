@@ -21,7 +21,7 @@ def go_to_customer_module(driver):
 
     # Go back to the dashboard first, in case the sidebar isn't fully present on this page
     driver.get("https://demo.coddypro.com/dashboard")
-    time.sleep(5)
+    time.sleep(4)
 
     print("URL:", driver.current_url)
     print("Customer link (by href) exists:", len(driver.find_elements(By.XPATH, "//a[@href='/clients']")))
@@ -127,7 +127,7 @@ def create_customer(driver):
 
     time.sleep(2)
 
-    vat_field.send_keys("123456000")
+    vat_field.send_keys("5440029800")
 
     time.sleep(1)
 
