@@ -129,7 +129,7 @@ def create_customer(driver):
 
     vat_field.send_keys("5440029890")
 
-    time.sleep(1)gu
+    time.sleep(1)
 
     # Find Contact name field
     contact_name_field = wait.until(
