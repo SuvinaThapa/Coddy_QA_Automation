@@ -46,7 +46,7 @@ def go_to_task_module(driver):
     wait = WebDriverWait(driver, 10)
 
     # Go back to the dashboard first, in case the sidebar isn't fully present on this page
-    driver.get("https://demo.coddypro.com/dashboard")
+   # driver.get("https://demo.coddypro.com/dashboard")
     time.sleep(5)
 
     print("URL:", driver.current_url)
@@ -64,9 +64,6 @@ def go_to_task_module(driver):
         "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
         task_link
     )
-
-    time.sleep(2)
-
     # Click Task & Reminder link
     task_link.click()
 
@@ -89,7 +86,6 @@ def click_new_task(driver):
         add_task_button
     )
 
-    time.sleep(2)
 
     # Click Add task button
     add_task_button.click()
@@ -100,29 +96,14 @@ def click_new_task(driver):
 def create_task(driver):
     wait = WebDriverWait(driver, 10)
 
-    # Wait for the modal to open
-    wait.until(
-        EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']")
-        )
-    )
-
-    time.sleep(1)
-
     # Find Title field
     title_field = wait.until(
-        EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[1]/div[2]/input")
+        EC.visibility_of_element_located(
+            (By.CSS_SELECTOR, "input[placeholder='Follow up payment from ABC Traders']")
         )
     )
 
-    driver.execute_script(
-        "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
-        title_field
-    )
-
-    time.sleep(2)
-
+    title_field.clear()
     title_field.send_keys("AutomationSuv Task")
 
     time.sleep(1)
@@ -130,61 +111,19 @@ def create_task(driver):
     # Find Description field
     description_field = wait.until(
         EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[1]/div[3]/textarea")
+            (By.CSS_SELECTOR, "[placeholder='Add context or next steps…']")
         )
     )
-
-    driver.execute_script(
-        "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
-        description_field
-    )
-
-    time.sleep(2)
-
     description_field.send_keys("i have complete 3 module and now trying this task module")
 
     time.sleep(1)
 
-    # Find Task type dropdown
-    task_type_dropdown = wait.until(
-        EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[1]/div[4]/div[1]/select")
-        )
-    )
-
-    driver.execute_script(
-        "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
-        task_type_dropdown
-    )
-
-    time.sleep(2)
-
-    select_second_valid_option(task_type_dropdown)
-
-    time.sleep(1)
-
-    # Find Status dropdown
-    status_dropdown = wait.until(
-        EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[1]/div[4]/div[2]/select")
-        )
-    )
-
-    driver.execute_script(
-        "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
-        status_dropdown
-    )
-
-    time.sleep(2)
-
-    select_second_valid_option(status_dropdown)
-
-    time.sleep(1)
 
     # Find Due date button
+    # Find Due date - Tomorrow button
     due_date_button = wait.until(
         EC.element_to_be_clickable(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[2]/div[4]/button[2]")
+            (By.XPATH, "//button[@type='button' and normalize-space()='Tomorrow']")
         )
     )
 
@@ -193,19 +132,15 @@ def create_task(driver):
         due_date_button
     )
 
-    time.sleep(2)
-
     due_date_button.click()
 
     time.sleep(1)
 
-    # Select tomorrow's date in the calendar that opens
-    select_tomorrow_date(driver, wait)
-
     # Find Add reminder button
+
     add_reminder_button = wait.until(
         EC.element_to_be_clickable(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[3]/div/button")
+            (By.XPATH, "//section[3]//button")
         )
     )
 
@@ -214,8 +149,6 @@ def create_task(driver):
         add_reminder_button
     )
 
-    time.sleep(2)
-
     add_reminder_button.click()
 
     time.sleep(1)
@@ -223,7 +156,7 @@ def create_task(driver):
     # Find Schedule dropdown
     schedule_dropdown = wait.until(
         EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[3]/div[2]/div[1]/div[1]/select")
+            (By.XPATH, "//section[3]//select")
         )
     )
 
@@ -232,8 +165,6 @@ def create_task(driver):
         schedule_dropdown
     )
 
-    time.sleep(2)
-
     select_second_valid_option(schedule_dropdown)
 
     time.sleep(1)
@@ -241,7 +172,7 @@ def create_task(driver):
     # Find Send before number field
     send_before_field = wait.until(
         EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[3]/div[2]/div[2]/div[1]/input")
+            (By.XPATH, "//section[3]/div[2]/div[2]//input[@type='number']")
         )
     )
 
@@ -256,31 +187,13 @@ def create_task(driver):
 
     time.sleep(1)
 
-    # Find Unit dropdown (Hour/Day/etc.)
-    unit_dropdown = wait.until(
-        EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[2]/div/section[3]/div[2]/div[2]/div[2]/select")
-        )
-    )
-
-    driver.execute_script(
-        "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
-        unit_dropdown
-    )
-
-    time.sleep(2)
-
-    select_second_valid_option(unit_dropdown)
-
-    time.sleep(1)
 
     # Find final Create/Save button
     create_button = wait.until(
         EC.element_to_be_clickable(
-            (By.XPATH, "//*[@id='radix-:r4k:']/div[3]/button[2]")
+            (By.XPATH, "//button[@data-shortcut='submit']")
         )
     )
-
     driver.execute_script(
         "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
         create_button
